@@ -1,4 +1,3 @@
 //string
-let myName = "kate";
-
+var myName = "kate";
 myName = 34;
