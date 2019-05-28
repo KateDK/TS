@@ -55,7 +55,7 @@ function returnMyName(): string {
   return myName;
   //return myAge //this will error out
 }
-console.log(returnMyName());
+//console.log(returnMyName());
 
 //void
 function sayHello(): void {
@@ -63,3 +63,15 @@ function sayHello(): void {
   console.log("Hi there!");
   //return "something" //this will error out
 }
+
+//argument types
+function multiply(num1, num2): number {
+  return num1 * num2;
+}
+//console.log(multiply(2, "str")); //=> NaN this will not error out as we did
+//not specify that the function is only expected to recieve numeric arguments.
+
+function multiplyNew(num1: number, num2: number): number {
+  return num1 * num2;
+}
+//console.log(multiplyNew(2,'str'));//Error
