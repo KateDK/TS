@@ -75,3 +75,13 @@ function multiplyNew(num1: number, num2: number): number {
   return num1 * num2;
 }
 //console.log(multiplyNew(2,'str'));//Error
+
+//function types
+// let myMultiply;
+// myMultiply = sayHello;
+//if we want to specify what kind of function we can assign we can do this:
+let myMultiply: (val1: number, val2: number) => number;
+//above we specified that the function that can be assigned has to take two values of type number
+//and has to return a number
+//myMultiply=sayHello; //Error
+myMultiply = multiplyNew; //this works ok
