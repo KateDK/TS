@@ -33,10 +33,25 @@ var address = [60, "east"]; //if we try to assign a string to the 0 index we wil
 var Color;
 (function (Color) {
     Color[Color["Gray"] = 0] = "Gray";
-    Color[Color["Green"] = 1] = "Green";
-    Color[Color["Blue"] = 100] = "Blue"; //
+    Color[Color["Blue"] = 100] = "Blue";
+    Color[Color["Green"] = 101] = "Green"; //1
 })(Color || (Color = {}));
-var myColor = Color.Green;
-console.log(myColor); //=>1 values are assigned automatically
+var myColor = Color.Gray;
+//console.log(myColor); //=>0 values are assigned automatically
 myColor = Color.Blue;
-console.log(myColor); //=> 100, we can overide automaticaly assigned values
+//console.log(myColor); //=> 100, we can overide automaticaly assigned values
+myColor = Color.Green;
+//console.log(myColor); //=> 101, the values keep incrementing from previous one
+//functions
+function returnMyName() {
+    //stating that function is expected to return a string
+    return myName;
+    //return myAge //this will error out
+}
+console.log(returnMyName());
+//void
+function sayHello() {
+    //this function does not return anything
+    console.log("Hi there!");
+    //return "something" //this will error out
+}

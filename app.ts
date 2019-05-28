@@ -39,10 +39,27 @@ let address: [number, string] = [60, "east"]; //if we try to assign a string to 
 //enums
 enum Color {
   Gray, //0
-  Green, //1
-  Blue = 100 //
+  Blue = 100, //
+  Green //1
 }
-let myColor: Color = Color.Green;
-console.log(myColor); //=>1 values are assigned automatically
+let myColor: Color = Color.Gray;
+//console.log(myColor); //=>0 values are assigned automatically
 myColor = Color.Blue;
-console.log(myColor); //=> 100, we can overide automaticaly assigned values
+//console.log(myColor); //=> 100, we can overide automaticaly assigned values
+myColor = Color.Green;
+//console.log(myColor); //=> 101, the values keep incrementing from previous one
+
+//functions
+function returnMyName(): string {
+  //stating that function is expected to return a string
+  return myName;
+  //return myAge //this will error out
+}
+console.log(returnMyName());
+
+//void
+function sayHello(): void {
+  //this function does not return anything
+  console.log("Hi there!");
+  //return "something" //this will error out
+}
