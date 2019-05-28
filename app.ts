@@ -17,7 +17,6 @@ hasHobbies = 1; //Error, 1 is not a boolean!!!!
 */
 
 //assign types
-
 let myRealAge;
 myRealAge = 16;
 myRealAge = "16";
@@ -27,3 +26,7 @@ myRealAge = "16";
 let myCatAge: number;
 myCatAge = 13;
 //myCatAge = "13"; => this is wrong becouse its expecting type number
+
+//array
+let hobbies: any[] = ["reading", "knitting"];
+hobbies = [100];

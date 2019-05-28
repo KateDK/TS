@@ -22,3 +22,6 @@ myRealAge = "16";
 var myCatAge;
 myCatAge = 13;
 //myCatAge = "13"; => this is wrong becouse its expecting type number
+//array
+var hobbies = ["reading", "knitting"];
+hobbies = [100];
