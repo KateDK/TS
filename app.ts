@@ -30,3 +30,19 @@ myCatAge = 13;
 //array
 let hobbies: any[] = ["reading", "knitting"];
 hobbies = [100];
+
+//tuples (an array with mixed types and a limited amount of items)
+// let address = [60, "east"];
+//if we know that this is always going to be the format we can be explicit about it:
+let address: [number, string] = [60, "east"]; //if we try to assign a string to the 0 index we will get an error
+
+//enums
+enum Color {
+  Gray, //0
+  Green, //1
+  Blue = 100 //
+}
+let myColor: Color = Color.Green;
+console.log(myColor); //=>1 values are assigned automatically
+myColor = Color.Blue;
+console.log(myColor); //=> 100, we can overide automaticaly assigned values

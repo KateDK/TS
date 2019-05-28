@@ -25,3 +25,18 @@ myCatAge = 13;
 //array
 var hobbies = ["reading", "knitting"];
 hobbies = [100];
+//tuples (an array with mixed types and a limited amount of items)
+// let address = [60, "east"];
+//if we know that this is always going to be the format we can be explicit about it:
+var address = [60, "east"]; //if we try to assign a string to the 0 index we will get an error
+//enums
+var Color;
+(function (Color) {
+    Color[Color["Gray"] = 0] = "Gray";
+    Color[Color["Green"] = 1] = "Green";
+    Color[Color["Blue"] = 100] = "Blue"; //
+})(Color || (Color = {}));
+var myColor = Color.Green;
+console.log(myColor); //=>1 values are assigned automatically
+myColor = Color.Blue;
+console.log(myColor); //=> 100, we can overide automaticaly assigned values
