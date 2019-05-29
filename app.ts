@@ -84,4 +84,36 @@ let myMultiply: (val1: number, val2: number) => number;
 //above we specified that the function that can be assigned has to take two values of type number
 //and has to return a number
 //myMultiply=sayHello; //Error
+//Note: the name of arguments does not matter in this case as we only care about their order for correct function excecution
 myMultiply = multiplyNew; //this works ok
+
+//objects
+let userData = {
+  name: "Kate",
+  age: 16
+};
+//trying to re-assign the object to an empty object we will recieve an error
+//as it expects to recieve types that were initiated in the object at its creation
+//userData={};//Error => Type '{}' is missing the following properties from type '{ name: string; age: number; }
+// //similar to that, if we try to reassign it to an object that has diferent keys we will get an error
+
+// userData={
+//   a: "hi",
+//   b=8,
+// }; //Error=> Type '{ a: string; b: any; }' is not assignable to type '{ name: string; age: number; }'
+
+//unlike the function case, we do care about how we name the types as in object there is no order so we care about the keys.
+
+//explicit object typing:
+let user: { name: string; age: number } = {
+  name: "Kate",
+  age: 16
+};
+
+//complex object
+let complex: { data: number[]; output: (all: boolean) => number[] } = {
+  data: [100, 3.99, 10],
+  output: function(all: boolean): number[] {
+    return this.data;
+  }
+};
