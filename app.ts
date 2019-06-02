@@ -118,7 +118,7 @@ let complex: { data: number[]; output: (all: boolean) => number[] } = {
   }
 };
 
-//type alias
+//type alias//
 type Complex = { data: number[]; output: (all: boolean) => number[] };
 
 let complex2: Complex = {
