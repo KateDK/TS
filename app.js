@@ -73,6 +73,7 @@ var myMultiply;
 //above we specified that the function that can be assigned has to take two values of type number
 //and has to return a number
 //myMultiply=sayHello; //Error
+//Note: the name of arguments does not matter in this case as we only care about their order for correct function excecution
 myMultiply = multiplyNew; //this works ok
 //objects
 var userData = {
@@ -87,3 +88,43 @@ var userData = {
 //   a: "hi",
 //   b=8,
 // }; //Error=> Type '{ a: string; b: any; }' is not assignable to type '{ name: string; age: number; }'
+//unlike the function case, we do care about how we name the types as in object there is no order so we care about the keys.
+//explicit object typing:
+var user = {
+    name: "Kate",
+    age: 16
+};
+//complex object
+var complex = {
+    data: [100, 3.99, 10],
+    output: function (all) {
+        return this.data;
+    }
+};
+var complex2 = {
+    data: [1, 2, 3.4],
+    output: function (all) {
+        return this.data;
+    }
+};
+//union types
+var myRealAge1;
+//in this case, the myRealAge1 variable can be assigned to
+//both a number and a string but not anything else.
+//check types
+var finalValue = "A string";
+if (typeof finalValue === "string") {
+    //do something
+}
+//to check the type of something we need to put the type into a
+//string to check it
+if (typeof finalValue === "number") {
+    console.log("I will never run becouse finalValue is not a number!!!");
+}
+//never
+function neverReturns() {
+    throw new Error("An Error");
+}
+//The function above never returns anything. it throws an error.
+//its not the same case as void -
+//there is no return at all (not even undefined).

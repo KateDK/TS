@@ -143,3 +143,11 @@ if (typeof finalValue === "string") {
 if (typeof finalValue === "number") {
   console.log("I will never run becouse finalValue is not a number!!!");
 }
+
+//never
+function neverReturns(): never {
+  throw new Error("An Error");
+}
+//The function above never returns anything. it throws an error.
+//its not the same case as void -
+//there is no return at all (not even undefined).
