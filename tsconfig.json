@@ -1,10 +1,19 @@
+/*
+You can find a detailed documentation on the TypeScript Compiler Config File 
+(tsconfig.json) here: http://www.typescriptlang.org/docs/handbook/tsconfig-json.html
+
+Detailes on the Compiler Options can be found here: 
+http://www.typescriptlang.org/docs/handbook/compiler-options.html
+*/
 {
   "compilerOptions": {
     "module": "commonjs",
     "target": "es5",
-    "noImplicitAny": false,
-    "sourceMap": false,
-    "strictNullChecks": false
+    "noImplicitAny": false, //if set to true this will give warnings when no type is assigned to a declared variable
+    "sourceMap": false, //if set to true it will enable us to debug ts code in the console (sources -> yourFile.ts)
+    "strictNullChecks": false,
+    "noEmitOnError": false, //if setup to true, no js file will be created on compilation if there are compile errors.
+    "noUnusedParameters": false //if set to true will not allow us to declare and not use parameters.
   },
   "exclude": ["node_modules"]
 }
