@@ -130,5 +130,16 @@ let complex2: Complex = {
 
 //union types
 let myRealAge1: number | string;
+//in this case, the myRealAge1 variable can be assigned to
+//both a number and a string but not anything else.
 
-//in this case, the myRealAge1 variable can be assigned to both a number and a string but not anything else.
+//check types
+let finalValue = "A string";
+if (typeof finalValue === "string") {
+  //do something
+}
+//to check the type of something we need to put the type into a
+//string to check it
+if (typeof finalValue === "number") {
+  console.log("I will never run becouse finalValue is not a number!!!");
+}
