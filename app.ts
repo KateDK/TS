@@ -1,22 +1,30 @@
+//######################################################################
 //string
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 let myName: string = "kate";
 /*
 myName = 34; //Error, myName is set up as a type of string
 */
 
+//######################################################################
 //numbers
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 let favNum: number = 8;
 /*
 favNum = "3"; //ERror, favNum is expecting a number!
 */
 
+//######################################################################
 //boolean
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 let hasHobbies: boolean = true;
 /*
 hasHobbies = 1; //Error, 1 is not a boolean!!!!
 */
 
+//######################################################################
 //assign types
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 let myRealAge;
 myRealAge = 16;
 myRealAge = "16";
@@ -27,16 +35,22 @@ let myCatAge: number;
 myCatAge = 13;
 //myCatAge = "13"; => this is wrong becouse its expecting type number
 
+//######################################################################
 //array
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 let hobbies: any[] = ["reading", "knitting"];
 hobbies = [100];
 
+//######################################################################
 //tuples (an array with mixed types and a limited amount of items)
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 // let address = [60, "east"];
 //if we know that this is always going to be the format we can be explicit about it:
 let address: [number, string] = [60, "east"]; //if we try to assign a string to the 0 index we will get an error
 
+//######################################################################
 //enums
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 enum Color {
   Gray, //0
   Blue = 100, //
@@ -49,7 +63,9 @@ myColor = Color.Blue;
 myColor = Color.Green;
 //console.log(myColor); //=> 101, the values keep incrementing from previous one
 
+//######################################################################
 //functions
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 function returnMyName(): string {
   //stating that function is expected to return a string
   return myName;
@@ -57,14 +73,18 @@ function returnMyName(): string {
 }
 //console.log(returnMyName());
 
+//######################################################################
 //void
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 function sayHello(): void {
   //this function does not return anything
   console.log("Hi there!");
   //return "something" //this will error out
 }
 
+//######################################################################
 //argument types
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 function multiply(num1, num2): number {
   return num1 * num2;
 }
@@ -76,7 +96,9 @@ function multiplyNew(num1: number, num2: number): number {
 }
 //console.log(multiplyNew(2,'str'));//Error
 
+//######################################################################
 //function types
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 // let myMultiply;
 // myMultiply = sayHello;
 //if we want to specify what kind of function we can assign we can do this:
@@ -87,7 +109,9 @@ let myMultiply: (val1: number, val2: number) => number;
 //Note: the name of arguments does not matter in this case as we only care about their order for correct function excecution
 myMultiply = multiplyNew; //this works ok
 
+//######################################################################
 //objects
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 let userData = {
   name: "Kate",
   age: 16
@@ -104,13 +128,17 @@ let userData = {
 
 //unlike the function case, we do care about how we name the types as in object there is no order so we care about the keys.
 
+//######################################################################
 //explicit object typing:
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 let user: { name: string; age: number } = {
   name: "Kate",
   age: 16
 };
 
+//######################################################################
 //complex object
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 let complex: { data: number[]; output: (all: boolean) => number[] } = {
   data: [100, 3.99, 10],
   output: function(all: boolean): number[] {
@@ -118,7 +146,9 @@ let complex: { data: number[]; output: (all: boolean) => number[] } = {
   }
 };
 
+//######################################################################
 //type alias//
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 type Complex = { data: number[]; output: (all: boolean) => number[] };
 
 let complex2: Complex = {
@@ -128,12 +158,16 @@ let complex2: Complex = {
   }
 };
 
+//######################################################################
 //union types
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 let myRealAge1: number | string;
 //in this case, the myRealAge1 variable can be assigned to
 //both a number and a string but not anything else.
 
+//######################################################################
 //check types
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 let finalValue = "A string";
 if (typeof finalValue === "string") {
   //do something
@@ -144,10 +178,45 @@ if (typeof finalValue === "number") {
   console.log("I will never run becouse finalValue is not a number!!!");
 }
 
+//######################################################################
 //never
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 function neverReturns(): never {
   throw new Error("An Error");
 }
 //The function above never returns anything. it throws an error.
 //its not the same case as void -
 //there is no return at all (not even undefined).
+
+//######################################################################
+//Nullable types
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+let canBeNull = 12;
+canBeNull = null; //that's OK
+let canAlsoBeNull; //type=any val=undefined
+//canAlsoBeNull=null; //also OK
+//We can add a strict null check to make sure some values would not be able
+//to be assigned to null.
+//to do that:
+/*
+go to tsconfig
+add in "strictNullChecks": true ti the compiler options
+*/
+
+//after we did that we will start getting errors
+
+/*
+app.ts:195:1 - error TS2322: Type 'null' is not assignable to type 'number'.
+
+195 canBeNull = null; 
+NOTE: we do not get an error for canAlsoBeNull as it is not assigned
+to any type and is undefined. since its falsy it can allso be nullified.
+*/
+
+/*
+To fix the errors we simply need to make all the variables that can be 
+nullified a union type of the original type AND null
+
+let canBeNull: number | null = 12;
+
+*/
