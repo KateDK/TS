@@ -190,4 +190,10 @@ nullified a union type of the original type AND null
 
 let canBeNull: number | null = 12;
 
+assigning a variable to null in its creation will only allow null to be its value
+so is we would want to reassign its best to ether just declare the variable or create a union type
 */
+var canThisBeAny;
+canThisBeAny = null;
+canThisBeAny = 12;
+//######################################################################
