@@ -228,3 +228,24 @@ canThisBeAny = null;
 canThisBeAny = 12;
 
 //######################################################################
+//Module Excercise
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+//Try to be as explicit as possible and add Types to everything you can!
+
+type Money = { money: number; deposit: (value: number) => void };
+let bankAccount: Money = {
+  money: 2000,
+  deposit(value: number): void {
+    this.money += value;
+  }
+};
+
+let myself: { name: string; bankAccount: Money; hobbies: string[] } = {
+  name: "Max",
+  bankAccount: bankAccount,
+  hobbies: ["Sports", "Cooking"]
+};
+
+myself.bankAccount.deposit(3000);
+
+console.log(myself);

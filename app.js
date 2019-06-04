@@ -196,4 +196,16 @@ so is we would want to reassign its best to ether just declare the variable or c
 var canThisBeAny;
 canThisBeAny = null;
 canThisBeAny = 12;
-//######################################################################
+var bankAccount = {
+    money: 2000,
+    deposit: function (value) {
+        this.money += value;
+    }
+};
+var myself = {
+    name: "Max",
+    bankAccount: bankAccount,
+    hobbies: ["Sports", "Cooking"]
+};
+myself.bankAccount.deposit(3000);
+console.log(myself);
