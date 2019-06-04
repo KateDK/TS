@@ -127,3 +127,8 @@ let complex2: Complex = {
     return this.data;
   }
 };
+
+//union types
+let myRealAge1: number | string;
+
+//in this case, the myRealAge1 variable can be assigned to both a number and a string but not anything else.
