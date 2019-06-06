@@ -294,3 +294,22 @@ console.log(person.name, person.username);
 person.printAge();
 person.setType("Code Ninja");
 //person.setHobby('learning'); => will not work with private method
+
+//######################################################################
+//Inheritance
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+class Kate extends Person {
+  name = "Kate";
+  constructor(username: string) {
+    //when creating a constructor for an extended class we have to call super() first
+    //super() calls the constructor of the parent class
+    super("Kate", username);
+    this.age = 9;
+    //in this class we do not have access to the type atribute of the Person class
+    //becouse its private.
+    //we do however have access to the protected age property
+  }
+}
+const kate = new Kate("mmmmCoffee");
+console.log(kate); // {username: "mmmmCoffee", age: 8, name: "Kate"}
+//even though we passed a different name to the new object, the class overwrites it

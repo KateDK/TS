@@ -1,3 +1,16 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 //######################################################################
 //string
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -244,3 +257,26 @@ console.log(person.name, person.username);
 //we do not have access to type or age as they are protected or private.
 person.printAge();
 person.setType("Code Ninja");
+//person.setHobby('learning'); => will not work with private method
+//######################################################################
+//Inheritance
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+var Kate = /** @class */ (function (_super) {
+    __extends(Kate, _super);
+    function Kate(username) {
+        var _this = 
+        //when creating a constructor for an extended class we have to call super() first
+        //super() calls the constructor of the parent class
+        _super.call(this, "Kate", username) || this;
+        _this.name = "Kate";
+        _this.age = 9;
+        return _this;
+        //in this class we do not have access to the type atribute of the Person class
+        //becouse its private.
+        //we do however have access to the protected age property
+    }
+    return Kate;
+}(Person));
+var kate = new Kate("mmmmCoffee");
+console.log(kate); // {username: "mmmmCoffee", age: 8, name: "Kate"}
+//even though we passed a different name to the new object, the class overwrites it
