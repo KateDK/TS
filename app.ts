@@ -250,7 +250,9 @@ myself.bankAccount.deposit(3000);
 
 console.log(myself);
 
+//######################################################################
 //classes
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 class Person {
   public name: string;
@@ -260,18 +262,35 @@ class Person {
   private type: string;
   //we can only access this property from within this class or object that will be based on this class.
   //We will not be able to access private properties from outside of this class.
-  protected age: number;
+  protected age: number = 8;
   //protected properties can be available to objects that inherit this class.
-
+  private hobby: string;
   constructor(name: string, public username: string) {
     this.name = name;
   }
   //in the constructor are two ways to assign values to the class with the constructor function
   // the first way will assign a value for the name property that already exists in the class
   //the second will create a new public property on the class called username and assign a value to it.
+
+  //class methods:
+  printAge() {
+    console.log(this.age);
+  }
+  setType(type: string) {
+    this.type = type;
+    console.log(this.type);
+    this.setHobby("reading");
+  }
+  private setHobby(hobby: string) {
+    this.hobby = hobby;
+    console.log(this.hobby);
+  }
 }
 
 //using the class:
 const person = new Person("Kate", "KateDK");
 console.log(person.name, person.username);
 //we do not have access to type or age as they are protected or private.
+person.printAge();
+person.setType("Code Ninja");
+//person.setHobby('learning'); => will not work with private method

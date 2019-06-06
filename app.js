@@ -209,15 +209,38 @@ var myself = {
 };
 myself.bankAccount.deposit(3000);
 console.log(myself);
+//######################################################################
 //classes
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 var Person = /** @class */ (function () {
-    //protected properties can be available to objects that inherit this class.
     function Person(name, username) {
         this.username = username;
+        //we can only access this property from within this class or object that will be based on this class.
+        //We will not be able to access private properties from outside of this class.
+        this.age = 8;
         this.name = name;
     }
+    //in the constructor are two ways to assign values to the class with the constructor function
+    // the first way will assign a value for the name property that already exists in the class
+    //the second will create a new public property on the class called username and assign a value to it.
+    //class methods:
+    Person.prototype.printAge = function () {
+        console.log(this.age);
+    };
+    Person.prototype.setType = function (type) {
+        this.type = type;
+        console.log(this.type);
+        this.setHobby("reading");
+    };
+    Person.prototype.setHobby = function (hobby) {
+        this.hobby = hobby;
+        console.log(this.hobby);
+    };
     return Person;
 }());
 //using the class:
 var person = new Person("Kate", "KateDK");
 console.log(person.name, person.username);
+//we do not have access to type or age as they are protected or private.
+person.printAge();
+person.setType("Code Ninja");
