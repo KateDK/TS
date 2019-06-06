@@ -209,3 +209,15 @@ var myself = {
 };
 myself.bankAccount.deposit(3000);
 console.log(myself);
+//classes
+var Person = /** @class */ (function () {
+    //protected properties can be available to objects that inherit this class.
+    function Person(name, username) {
+        this.username = username;
+        this.name = name;
+    }
+    return Person;
+}());
+//using the class:
+var person = new Person("Kate", "KateDK");
+console.log(person.name, person.username);

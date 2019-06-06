@@ -249,3 +249,29 @@ let myself: { name: string; bankAccount: Money; hobbies: string[] } = {
 myself.bankAccount.deposit(3000);
 
 console.log(myself);
+
+//classes
+
+class Person {
+  public name: string;
+  //we do not have to use this.name here.
+  //we can add the public before the property to make it available to everyone,
+  //but we dont have to as its the default.
+  private type: string;
+  //we can only access this property from within this class or object that will be based on this class.
+  //We will not be able to access private properties from outside of this class.
+  protected age: number;
+  //protected properties can be available to objects that inherit this class.
+
+  constructor(name: string, public username: string) {
+    this.name = name;
+  }
+  //in the constructor are two ways to assign values to the class with the constructor function
+  // the first way will assign a value for the name property that already exists in the class
+  //the second will create a new public property on the class called username and assign a value to it.
+}
+
+//using the class:
+const person = new Person("Kate", "KateDK");
+console.log(person.name, person.username);
+//we do not have access to type or age as they are protected or private.
