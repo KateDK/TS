@@ -336,3 +336,16 @@ let plant = new Plant();
 console.log(plant.species);
 plant.species = "tulip";
 console.log(plant.species);
+
+//######################################################################
+//Static Properties and Methods
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+class Helpers {
+  static PI: number = 3.14;
+  static calcCircumference(diameter: number): number {
+    return this.PI * diameter;
+  }
+}
+//the static keyword enables us to use a class property without having to extantiate it!!!
+console.log(Helpers.PI);
+console.log(Helpers.calcCircumference(8));

@@ -308,3 +308,18 @@ var plant = new Plant();
 console.log(plant.species);
 plant.species = "tulip";
 console.log(plant.species);
+//######################################################################
+//Static Properties and Methods
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+var Helpers = /** @class */ (function () {
+    function Helpers() {
+    }
+    Helpers.calcCircumference = function (diameter) {
+        return this.PI * diameter;
+    };
+    Helpers.PI = 3.14;
+    return Helpers;
+}());
+//the static keyword enables us to use a class property without having to extantiate it!!!
+console.log(Helpers.PI);
+console.log(Helpers.calcCircumference(8));
