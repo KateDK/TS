@@ -313,3 +313,26 @@ class Kate extends Person {
 const kate = new Kate("mmmmCoffee");
 console.log(kate); // {username: "mmmmCoffee", age: 8, name: "Kate"}
 //even though we passed a different name to the new object, the class overwrites it
+
+//######################################################################
+//Getters & Setters
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+class Plant {
+  private _species: string = "Default";
+  get species() {
+    return this._species;
+  }
+  set species(value: string) {
+    if (value.length > 3) {
+      this._species = value;
+    } else {
+      this._species = "Default";
+    }
+  }
+}
+
+let plant = new Plant();
+console.log(plant.species);
+plant.species = "tulip";
+console.log(plant.species);
