@@ -368,3 +368,5 @@ var OnlyOne = /** @class */ (function () {
 }());
 //let wrong = new OnlyOne("The Only One");
 var right = OnlyOne.getInstance();
+//console.log(right.name);
+right.name = "Something Else.."; //We can re-write the name of this singleton if the property is not setup as readonly

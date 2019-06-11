@@ -387,7 +387,7 @@ console.log("2)", newProject);
 
 class OnlyOne {
   private static instance: OnlyOne;
-  private constructor(public name: string) {}
+  private constructor(public readonly name: string) {}
   static getInstance() {
     if (!OnlyOne.instance) {
       OnlyOne.instance = new OnlyOne("The Only One!");
@@ -398,3 +398,5 @@ class OnlyOne {
 
 //let wrong = new OnlyOne("The Only One");
 let right = OnlyOne.getInstance();
+//console.log(right.name);
+//right.name = "Something Else.."; //We can re-write the name of this singleton if the property is not setup as readonly
