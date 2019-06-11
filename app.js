@@ -225,8 +225,8 @@ console.log(myself);
 //######################################################################
 //classes
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-var Person = /** @class */ (function () {
-    function Person(name, username) {
+var Perrson = /** @class */ (function () {
+    function Perrson(name, username) {
         this.username = username;
         //we can only access this property from within this class or object that will be based on this class.
         //We will not be able to access private properties from outside of this class.
@@ -237,27 +237,27 @@ var Person = /** @class */ (function () {
     // the first way will assign a value for the name property that already exists in the class
     //the second will create a new public property on the class called username and assign a value to it.
     //class methods:
-    Person.prototype.printAge = function () {
+    Perrson.prototype.printAge = function () {
         console.log(this.age);
     };
-    Person.prototype.setType = function (type) {
+    Perrson.prototype.setType = function (type) {
         this.type = type;
         console.log(this.type);
         this.setHobby("reading");
     };
-    Person.prototype.setHobby = function (hobby) {
+    Perrson.prototype.setHobby = function (hobby) {
         this.hobby = hobby;
         console.log(this.hobby);
     };
-    return Person;
+    return Perrson;
 }());
 //using the class:
-var person = new Person("Kate", "KateDK");
-console.log(person.name, person.username);
+var perrson = new Perrson("Kate", "KateDK");
+console.log(perrson.name, perrson.username);
 //we do not have access to type or age as they are protected or private.
-person.printAge();
-person.setType("Code Ninja");
-//person.setHobby('learning'); => will not work with private method
+perrson.printAge();
+perrson.setType("Code Ninja");
+//perrson.setHobby('learning'); => will not work with private method
 //######################################################################
 //Inheritance
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -276,7 +276,7 @@ var Kate = /** @class */ (function (_super) {
         //we do however have access to the protected age property
     }
     return Kate;
-}(Person));
+}(Perrson));
 var kate = new Kate("mmmmCoffee");
 console.log(kate); // {username: "mmmmCoffee", age: 8, name: "Kate"}
 //even though we passed a different name to the new object, the class overwrites it
@@ -369,4 +369,117 @@ var OnlyOne = /** @class */ (function () {
 //let wrong = new OnlyOne("The Only One");
 var right = OnlyOne.getInstance();
 //console.log(right.name);
-right.name = "Something Else.."; //We can re-write the name of this singleton if the property is not setup as readonly
+//right.name = "Something Else.."; //We can re-write the name of this singleton if the property is not setup as readonly
+// other way is to use only a getter (without a setter)
+//######################################################################
+//Module Excercise
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+//Re-write all this code using TypeScript and Class Features.
+// Exercise 1 - How was your TypeScript Class?
+var Car = /** @class */ (function () {
+    function Car(name) {
+        this.acceleration = 0;
+        this.name = name;
+    }
+    Car.prototype.honk = function () {
+        console.log("Toooooooooot!");
+    };
+    Car.prototype.accelerate = function (speed) {
+        this.acceleration = this.acceleration + speed;
+    };
+    return Car;
+}());
+// function Car(name) {
+//   this.name = name;
+//   this.acceleration = 0;
+//   this.honk = function() {
+//     console.log("Toooooooooot!");
+//   };
+//   this.accelerate = function(speed: number) {
+//     this.acceleration = this.acceleration + speed;
+//   };
+// }
+var car = new Car("BMW");
+car.honk();
+console.log("1", car.acceleration);
+car.accelerate(10);
+console.log("2", car.acceleration);
+car.accelerate(10);
+console.log("3", car.acceleration);
+// Exercise 2 - Two objects, based on each other ...
+var baseObject = /** @class */ (function () {
+    function baseObject() {
+        this.width = 0;
+        this.length = 0;
+    }
+    return baseObject;
+}());
+// var baseObject = {
+//   width: 0,
+//   length: 0
+// };
+var Rectangle = /** @class */ (function (_super) {
+    __extends(Rectangle, _super);
+    function Rectangle() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Rectangle.prototype.calcSize = function () {
+        return this.width * this.length;
+    };
+    return Rectangle;
+}(baseObject));
+//var rectangle = Object.create(baseObject);
+// rectangle.width = 5;
+// rectangle.length = 2;
+// rectangle.calcSize = function() {
+//   return this.width * this.length;
+// };
+var rectangle = new Rectangle();
+rectangle.width = 5;
+rectangle.length = 3;
+console.log("rec sizs:", rectangle.calcSize());
+// Exercise 3 - Make sure to compile to ES5 (set the target in tsconfig.json)
+var Person = /** @class */ (function () {
+    function Person() {
+        this._firstName = "";
+    }
+    Object.defineProperty(Person.prototype, "firstName", {
+        get: function () {
+            return this._firstName;
+        },
+        set: function (val) {
+            if (val.length > 3) {
+                this._firstName = val;
+            }
+            else {
+                this._firstName = "";
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return Person;
+}());
+// var person = {
+//   _firstName: ""
+// };
+// Object.defineProperty(person, "firstName", {
+//   get: function() {
+//     return this._firstName;
+//   },
+//   set: function(value) {
+//     if (value.length > 3) {
+//       this._firstName = value;
+//     } else {
+//       this._firstName = "";
+//     }
+//   },
+//   enumerable: true,
+//   configurable: true
+// });
+var person = new Person();
+console.log(person.firstName);
+person.firstName = "Ma";
+console.log(person.firstName);
+person.firstName = "Maximilian";
+console.log(person.firstName);

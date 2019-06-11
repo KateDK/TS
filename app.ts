@@ -254,7 +254,7 @@ console.log(myself);
 //classes
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-class Person {
+class Perrson {
   public name: string;
   //we do not have to use this.name here.
   //we can add the public before the property to make it available to everyone,
@@ -288,17 +288,17 @@ class Person {
 }
 
 //using the class:
-const person = new Person("Kate", "KateDK");
-console.log(person.name, person.username);
+const perrson = new Perrson("Kate", "KateDK");
+console.log(perrson.name, perrson.username);
 //we do not have access to type or age as they are protected or private.
-person.printAge();
-person.setType("Code Ninja");
-//person.setHobby('learning'); => will not work with private method
+perrson.printAge();
+perrson.setType("Code Ninja");
+//perrson.setHobby('learning'); => will not work with private method
 
 //######################################################################
 //Inheritance
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-class Kate extends Person {
+class Kate extends Perrson {
   name = "Kate";
   constructor(username: string) {
     //when creating a constructor for an extended class we have to call super() first
@@ -400,3 +400,111 @@ class OnlyOne {
 let right = OnlyOne.getInstance();
 //console.log(right.name);
 //right.name = "Something Else.."; //We can re-write the name of this singleton if the property is not setup as readonly
+// other way is to use only a getter (without a setter)
+
+//######################################################################
+//Module Excercise
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+//Re-write all this code using TypeScript and Class Features.
+
+// Exercise 1 - How was your TypeScript Class?
+class Car {
+  public acceleration: number = 0;
+  public name: string;
+  constructor(name: string) {
+    this.name = name;
+  }
+  honk() {
+    console.log("Toooooooooot!");
+  }
+  accelerate(speed: number): void {
+    this.acceleration = this.acceleration + speed;
+  }
+}
+// function Car(name) {
+//   this.name = name;
+//   this.acceleration = 0;
+
+//   this.honk = function() {
+//     console.log("Toooooooooot!");
+//   };
+
+//   this.accelerate = function(speed: number) {
+//     this.acceleration = this.acceleration + speed;
+//   };
+// }
+var car = new Car("BMW");
+car.honk();
+console.log("1", car.acceleration);
+car.accelerate(10);
+console.log("2", car.acceleration);
+car.accelerate(10);
+console.log("3", car.acceleration);
+
+// Exercise 2 - Two objects, based on each other ...
+class baseObject {
+  width: number = 0;
+  length: number = 0;
+}
+
+// var baseObject = {
+//   width: 0,
+//   length: 0
+// };
+
+class Rectangle extends baseObject {
+  calcSize(): number {
+    return this.width * this.length;
+  }
+}
+//var rectangle = Object.create(baseObject);
+// rectangle.width = 5;
+// rectangle.length = 2;
+// rectangle.calcSize = function() {
+//   return this.width * this.length;
+// };
+const rectangle = new Rectangle();
+rectangle.width = 5;
+rectangle.length = 3;
+console.log("rec sizs:", rectangle.calcSize());
+
+// Exercise 3 - Make sure to compile to ES5 (set the target in tsconfig.json)
+
+class Person {
+  private _firstName: string = "";
+  get firstName() {
+    return this._firstName;
+  }
+
+  set firstName(val: string) {
+    if (val.length > 3) {
+      this._firstName = val;
+    } else {
+      this._firstName = "";
+    }
+  }
+}
+// var person = {
+//   _firstName: ""
+// };
+// Object.defineProperty(person, "firstName", {
+//   get: function() {
+//     return this._firstName;
+//   },
+//   set: function(value) {
+//     if (value.length > 3) {
+//       this._firstName = value;
+//     } else {
+//       this._firstName = "";
+//     }
+//   },
+//   enumerable: true,
+//   configurable: true
+// });
+const person = new Person();
+console.log(person.firstName);
+person.firstName = "Ma";
+console.log(person.firstName);
+person.firstName = "Maximilian";
+console.log(person.firstName);
