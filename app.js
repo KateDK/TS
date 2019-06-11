@@ -323,3 +323,31 @@ var Helpers = /** @class */ (function () {
 //the static keyword enables us to use a class property without having to extantiate it!!!
 console.log(Helpers.PI);
 console.log(Helpers.calcCircumference(8));
+//######################################################################
+//Abstract Classes
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+var Project = /** @class */ (function () {
+    function Project() {
+        //an abstract class cannot be extenciated directly, we can only inharit from them
+        //to use it we must extand from it
+        this.projectName = "Default";
+    }
+    Project.prototype.calcBudget = function () {
+        return this.budget * 2;
+    };
+    return Project;
+}());
+var ITProject = /** @class */ (function (_super) {
+    __extends(ITProject, _super);
+    function ITProject() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ITProject.prototype.changeName = function (name) {
+        this.projectName = name;
+    };
+    return ITProject;
+}(Project));
+var newProject = new ITProject();
+console.log("1)", newProject);
+newProject.changeName("newName");
+console.log("2)", newProject);

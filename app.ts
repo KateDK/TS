@@ -349,3 +349,34 @@ class Helpers {
 //the static keyword enables us to use a class property without having to extantiate it!!!
 console.log(Helpers.PI);
 console.log(Helpers.calcCircumference(8));
+
+//######################################################################
+//Abstract Classes
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+abstract class Project {
+  //an abstract class cannot be extenciated directly, we can only inharit from them
+  //to use it we must extand from it
+  projectName: string = "Default";
+  budget: number;
+
+  calcBudget() {
+    return this.budget * 2;
+  }
+
+  //changeName is an abstract method. what it means is that we do not implement any logic
+  //we only specify what it takes and what it returns.
+  //we will have to set it up with logic when we will extand from the class
+  abstract changeName(name: string): void;
+}
+
+class ITProject extends Project {
+  changeName(name: string): void {
+    this.projectName = name;
+  }
+}
+
+let newProject = new ITProject();
+console.log("1)", newProject);
+newProject.changeName("newName");
+console.log("2)", newProject);
